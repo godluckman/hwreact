@@ -97,19 +97,19 @@ function nine(arg) {
 
 }
 
-let plus = (n) => {
+const plus = (n) => {
     return function(a) { return a + n() };
 
 }
-let minus = (n) => {
+const minus = (n) => {
     return function(a) { return a - n() };
 
 }
-let dividedBy = (n) => {
+const dividedBy = (n) => {
     return function(a) { return a / n() };
 
 }
-let times = (n) => {
+const times = (n) => {
     return function(a) { return a * n() };
 }
 

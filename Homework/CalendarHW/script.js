@@ -11,8 +11,8 @@ for (let i = 1980; i < new Date().getFullYear() + 1; i++) {
 
 const montharr = ['Выбрать месяц', 'Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
 
-let gotSelectYear = document.getElementById("select-year");
-let gotSelectMonth = document.getElementById("select-month");
+const gotSelectYear = document.getElementById("select-year");
+const gotSelectMonth = document.getElementById("select-month");
 
 
 function selectCreate(elem, arr) {
