@@ -1,0 +1,74 @@
+.ctd {
+    margin-top: 10px;
+    background-color: coral;
+    border: 5px solid coral;
+    box-sizing: border-box;
+    border-radius: 300px;
+}
+
+.ctd:hover {
+    color: white;
+    transition: .3s ease;
+}
+
+#calendar {
+    font: 30px 'Roboto';
+    font-weight: 700;
+    color: #3d3d3d;
+    margin: 18px 0 18px 0;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 1px;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.up {
+    background-color: orchid;
+    border: 2px solid orchid;
+    box-sizing: border-box;
+    border-radius: 300px;
+    font-size: 20px;
+}
+
+.cont {
+    margin: 0 35% 0 35%;
+    background-color: #f0f0f3;
+    width: 30%;
+    align-content: center;
+    position: absolute;
+    text-align: center;
+    border: 1px solid black;
+    box-sizing: border-box;
+    border-radius: 20px;
+    box-shadow: 0px 5px 10px 6px rgba(34, 60, 80, 0.3);
+    ;
+}
+
+.card-header {
+    padding: 0.75rem 1.25rem;
+    margin: 0;
+    background-color: rgba(0, 0, 0, .03);
+    border-bottom: 1px solid;
+    font-size: 1.75rem;
+    font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+svg {
+    width: 100%;
+    margin-top: 1px;
+    transform-origin: 0 0;
+    background: rgba(0, 0, 0, .03);
+    border-radius: 20px;
+    border-bottom: 1px solid;
+    box-sizing: border-box;
+}
+
+path {
+    stroke: rgba(0, 0, 0, 0.4);
+    stroke-width: .25;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
