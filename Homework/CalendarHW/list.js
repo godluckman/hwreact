@@ -32,6 +32,15 @@ deleteButton.onclick = function() {
         deleteButton.setAttribute('disabled', 'disabled');
 }
 
-function modify(event){
-    
+function modify(event){ 
+    const inputEl = document.createElement('input');
+    const listEl = event.currentTarget;
+    inputEl.value = listEl.innerHTML;
+    inputEl.onblur = ()=>{
+        listEl.innerHTML = inputEl.value;
+        list.removeChild(inputEl);
+        listEl.hidden = false;
+    }
+    listEl.hidden = true;
+    listEl.before(inputEl)
 }
