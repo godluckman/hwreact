@@ -1,4 +1,4 @@
-let pow = (x) => {
+const pow = (x) => {
     return (y) => {
         if (y == 1) {
             return x;
@@ -10,7 +10,7 @@ let pow = (x) => {
 
 console.log(pow(2)(4));
 
-let calculate = (a) => {
+const calculate = (a) => {
     return (o) => {
         return (b) => {
             if (o === '+') {

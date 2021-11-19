@@ -66,11 +66,10 @@ coctailsStorage.addValue('Пеликан', {
 
 const addButton = document.getElementById('add');
 addButton.onclick = function() {
-    let n = prompt('Введите название коктеля');
-    let alko = confirm('Напиток алкогольный?');
-    alko ? alko = 'да' : alko = 'нет';
-    let ingredients = prompt('Необходимые ингредиенты:');
-    let recipe = prompt('рецепт приготовления:');
+    const n = prompt('Введите название коктеля');
+    const alko = confirm('Напиток алкогольный?') ? 'да' : 'нет';
+    const ingredients = prompt('Необходимые ингредиенты:');
+    const recipe = prompt('рецепт приготовления:');
     coctailsStorage.addValue(n, { name: n, isAlco: alko, ing: ingredients, recipe: recipe });
     console.log('Коктейль добавлен', coctailsStorage.getValue(n));
 }
@@ -79,7 +78,7 @@ addButton.onclick = function() {
 
 const deleteButton = document.getElementById('delete');
 deleteButton.onclick = function() {
-    let k = prompt('Какой рецепт удалить?');
+    const k = prompt('Какой рецепт удалить?');
     coctailsStorage.deleteValue(k);
 
 }
@@ -91,8 +90,8 @@ getButton.onclick = function() {
 
 const recipeButton = document.getElementById('recipe');
 recipeButton.onclick = function() {
-    let n = prompt('Введите название коктеля');
-    let coc = coctailsStorage.getValue(n);
+    const n = prompt('Введите название коктеля');
+    const coc = coctailsStorage.getValue(n);
     console.log(
         `Коктейль "${n}" (алкогольный: ${coc.isAlco})
          Необходимые ингредиенты: 

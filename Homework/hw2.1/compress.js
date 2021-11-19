@@ -1,6 +1,6 @@
 function compress(txt) {
-    let string = txt.split(''),
-        counter = 1
+    const string = txt.split('');
+    let counter = 1
     let compString = string.reduce(function(
         accumulator,
         currentValue,
@@ -22,7 +22,7 @@ function compress(txt) {
 }
 
 function uncompress(ntxt) {
-    let string = ntxt.split(''),
+    const string = ntxt.split(''),
         decompString = string.reduce(function(
             accumulator,
             currentValue,

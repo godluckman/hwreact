@@ -1,7 +1,7 @@
-const vowels = function(letter) {
-    return letter == 'а' || letter == 'у' || letter == 'о' || letter == 'и' || letter == 'э' || letter == 'ы' || letter == 'я' || letter == 'е' || letter == 'ё' || letter == 'ю'
-}
+const russianLetters = ['а','у','о','и','э','ы','я','е','ё','ю']
 
+const vowels = function(letter) {
+    return russianLetters.includes(letter)}
 const countVowelLetters = function(str) {
     return 'Количество гласных = ' + str.toLowerCase().split('').filter(vowels).length;
 }

@@ -5,7 +5,7 @@ let y = 2021 //prompt('Введите год');
 
 
 const yeararr = ['Выбрать год'];
-for (let i = 1980; i < new Date().getFullYear() + 1; i++) {
+for (let i = 1980; i <= new Date().getFullYear(); i++) {
     yeararr.push(i);
 }
 
