@@ -7,6 +7,7 @@
     
     html {
         font-size: 62.5%;
+        background-color: #12121f;
     }
     
     .container {
@@ -23,6 +24,7 @@
         width: 45rem;
         height: 56rem;
         background-color: #222227;
+        margin: 0 1rem;
         box-shadow: 0 0.5rem 3rem rgba(0, 0, 0, 0.4);
     }
     
@@ -112,11 +114,12 @@
         height: 5rem;
         background-color: #21C284;
         display: flex;
-        justify-content: space-between;
+        justify-content: space-evenly;
         align-items: center;
         padding: 0 2rem;
         text-align: center;
         text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
+        margin: 0 30%;
     }
     /* buttons */
     

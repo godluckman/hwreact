@@ -4,10 +4,11 @@ let y = 2021 //prompt('Введите год');
 
 
 
-let yeararr = ['Выбрать год'];
+const yeararr = ['Выбрать год'];
 for (let i = 1980; i < new Date().getFullYear() + 1; i++) {
     yeararr.push(i);
 }
+
 const montharr = ['Выбрать месяц', 'Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
 
 let gotSelectYear = document.getElementById("select-year");
@@ -29,37 +30,34 @@ function selectCreate(elem, arr) {
 selectCreate(gotSelectYear, yeararr);
 selectCreate(gotSelectMonth, montharr);
 
-function getSelectedValue(elem) {
-    let select = elem
-    let value = select.value;
-}
+// function getSelectedValue(elem) {
+//     let select = elem
+//     let value = select.value;
+//     return value
+// }
+
+// y = getSelectedValue(gotSelectYear);
+// m = getSelectedValue(gotSelectMonth);
+
+let date = new Date(y, m);
 
 
 let createButton = document.querySelector('.createbutton')
-
 
 createButton.addEventListener('click', function() {
     renderCalendar();
 });
 
-const date = new Date(y, m);
+
 
 const renderCalendar = () => {
     date.setDate(1);
 
     const monthDays = document.querySelector('.days');
 
-    const lastDay = new Date(
-        date.getFullYear(),
-        date.getMonth() + 1,
-        0
-    ).getDate();
+    const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
 
-    const prevLastDay = new Date(
-        date.getFullYear(),
-        date.getMonth(),
-        0
-    ).getDate();
+    const prevLastDay = new Date(date.getFullYear(), date.getMonth(), 0).getDate();
 
     const firstDayIndex = date.getDay() - 1;
 
@@ -71,20 +69,7 @@ const renderCalendar = () => {
 
     const nextDays = 7 - lastDayIndex - 1;
 
-    const months = [
-        'Январь',
-        'Февраль',
-        'Март',
-        'Апрель',
-        'Май',
-        'Июнь',
-        'Июль',
-        'Август',
-        'Сентябрь',
-        'Октябрь',
-        'Ноябрь',
-        'Декабрь'
-    ];
+    const months = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
 
     document.querySelector('.date h1').innerHTML = months[date.getMonth()];
 
@@ -134,3 +119,25 @@ document.querySelector('.next-year').addEventListener('click', () => {
     date.setFullYear(date.getFullYear() + 1);
     renderCalendar();
 });
+
+
+let calendars = [];
+
+
+class Calendar {
+    constructor(year, month, n) {
+        this.year = y
+        this.month = m
+        this.num = n
+    }
+
+
+
+
+
+
+
+}
+
+const calendar1 = new Calendar();
+calendars.push(calendar1);
