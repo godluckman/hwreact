@@ -2,16 +2,47 @@ let m = 10 //prompt('Введите номер месяца');
 let y = 2021 //prompt('Введите год');
 
 
-const date = new Date(y, m);
+
 
 let yeararr = ['Выбрать год'];
 for (let i = 1980; i < new Date().getFullYear() + 1; i++) {
     yeararr.push(i);
 }
+const montharr = ['Выбрать месяц', 'Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
+
+let gotSelectYear = document.getElementById("select-year");
+let gotSelectMonth = document.getElementById("select-month");
 
 
+function selectCreate(elem, arr) {
+    let select = elem;
+    let options = arr;
+    for (let i = 0; i < options.length; i++) {
+        let opt = options[i];
+        let nElem = document.createElement("option");
+        nElem.textContent = opt;
+        nElem.value = opt;
+        select.appendChild(nElem);
+    }
+}
+
+selectCreate(gotSelectYear, yeararr);
+selectCreate(gotSelectMonth, montharr);
+
+function getSelectedValue(elem) {
+    let select = elem
+    let value = select.value;
+}
 
 
+let createButton = document.querySelector('.createbutton')
+
+
+createButton.addEventListener('click', function() {
+    renderCalendar();
+});
+
+const date = new Date(y, m);
 
 const renderCalendar = () => {
     date.setDate(1);
@@ -52,7 +83,7 @@ const renderCalendar = () => {
         'Сентябрь',
         'Октябрь',
         'Ноябрь',
-        'Декабрь',
+        'Декабрь'
     ];
 
     document.querySelector('.date h1').innerHTML = months[date.getMonth()];
@@ -103,5 +134,3 @@ document.querySelector('.next-year').addEventListener('click', () => {
     date.setFullYear(date.getFullYear() + 1);
     renderCalendar();
 });
-
-renderCalendar();

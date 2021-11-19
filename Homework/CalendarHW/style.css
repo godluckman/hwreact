@@ -21,7 +21,7 @@
     
     .calendar {
         width: 45rem;
-        height: 52rem;
+        height: 56rem;
         background-color: #222227;
         box-shadow: 0 0.5rem 3rem rgba(0, 0, 0, 0.4);
     }
@@ -123,8 +123,8 @@
     .styled {
         border: 0;
         line-height: 2.5;
-        padding: 0 20px;
-        font-size: 1.3rem;
+        padding: 0 10px;
+        font-size: 1.2rem;
         font-weight: 400;
         text-align: center;
         color: #fff;
@@ -134,8 +134,7 @@
         cursor: pointer;
         box-sizing: border-box;
     }
-    
-    .styled:hover {}
+    /*.styled:hover {}*/
     
     .styled:active {
         box-shadow: inset -2px -2px 3px rgba(255, 255, 255, .6), inset 2px 2px 3px rgba(0, 0, 0, .6);
