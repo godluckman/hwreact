@@ -1,5 +1,5 @@
 let m = 10 //prompt('Введите номер месяца');
-let y = 2021 //prompt('Введите год');
+let year = 2021 //prompt('Введите год');
 
 
 
@@ -36,19 +36,36 @@ selectCreate(gotSelectMonth, montharr);
 //     return value
 // }
 
-// y = getSelectedValue(gotSelectYear);
 // m = getSelectedValue(gotSelectMonth);
 
-let date = new Date(y, m);
 
 
-let createButton = document.querySelector('.createbutton')
+const changeSelect = () => {
+    if(gotSelectMonth.value !== 'Выбрать месяц' && gotSelectYear.value !== 'Выбрать год') {
+      document.querySelector('.createbutton').disabled = false    
+    } else {
+      document.querySelector('.createbutton').disabled = true
+    }
+  }
+
+gotSelectMonth.addEventListener("change", changeSelect);
+gotSelectYear.addEventListener("change", changeSelect);
+
+
+
+
+
+
+
+const createButton = document.querySelector('.createbutton')
 
 createButton.addEventListener('click', function() {
+    document.querySelector('.deletebutton').disabled = false
     renderCalendar();
 });
 
 
+let date = new Date(year, m);
 
 const renderCalendar = () => {
     date.setDate(1);
@@ -75,6 +92,8 @@ const renderCalendar = () => {
 
     document.querySelector('.date p').innerHTML = date.getFullYear() + ' год';
 
+    //Конструктор основы
+
     let days = '';
 
     for (let x = firstDayIndex; x > 0; x--) {
@@ -96,39 +115,42 @@ const renderCalendar = () => {
         days += `<div class='next-date'>${j}</div>`;
         monthDays.innerHTML = days;
     }
+
+    document.querySelector('.prev').addEventListener('click', () => {
+        date.setMonth(date.getMonth() - 1);
+        renderCalendar();
+    });
+    
+    document.querySelector('.next').addEventListener('click', () => {
+        date.setMonth(date.getMonth() + 1);
+        renderCalendar();
+    });
+    
+    document.querySelector('.prev-year').addEventListener('click', () => {
+        date.setFullYear(date.getFullYear() - 1);
+        renderCalendar();
+    });
+    
+    document.querySelector('.next-year').addEventListener('click', () => {
+        date.setFullYear(date.getFullYear() + 1);
+        renderCalendar();
+    });
+    
 };
 
 
 
-document.querySelector('.prev').addEventListener('click', () => {
-    date.setMonth(date.getMonth() - 1);
-    renderCalendar();
-});
-
-document.querySelector('.next').addEventListener('click', () => {
-    date.setMonth(date.getMonth() + 1);
-    renderCalendar();
-});
-
-document.querySelector('.prev-year').addEventListener('click', () => {
-    date.setFullYear(date.getFullYear() - 1);
-    renderCalendar();
-});
-
-document.querySelector('.next-year').addEventListener('click', () => {
-    date.setFullYear(date.getFullYear() + 1);
-    renderCalendar();
-});
 
 
-let calendars = [];
+const calendars = [];
+const count = 0;
 
 
 class Calendar {
     constructor(year, month, n) {
-        this.year = y
-        this.month = m
-        this.num = n
+        this.num = num; 
+        this.createCalendar();
+        this.setDate(month, year);
     }
 
 
