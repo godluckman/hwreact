@@ -248,10 +248,12 @@ class Calendar {
         const nextDays = 7 - lastDayIndex - 1;
         const months = montharr.slice(1);
 
+        console.log(document.querySelector(`.date${this.num} h1${this.num}`))
 
         document.querySelector(`.date${this.num} h1${this.num}`).innerHTML = months[this.date.getMonth()];
-
-        document.querySelector(`.date${this.num} p${this.num}`).innerHTML = this.date.getFullYear() + ' год';
+        console.log(this.date);
+        console.log(document.querySelector(`.date${this.num} p${this.num}`))
+        document.querySelector(`.date${this.num} p${this.num}`).innerHTML = `${this.date.getFullYear()} год`;
 
         let days = '';
 
