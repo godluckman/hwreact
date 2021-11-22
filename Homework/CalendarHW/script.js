@@ -8,6 +8,7 @@ for (let i = 1980; i <= new Date().getFullYear(); i++) {
 const gotSelectYear = document.querySelector("#select-year");
 const gotSelectMonth = document.querySelector("#select-month");
 
+
 function selectCreate(elem, arr) {
     let select = elem;
     let options = arr;
@@ -40,6 +41,7 @@ gotSelectYear.addEventListener("change", dataSet);
 
 const createButton = document.querySelector('.createbutton');
 const deleteButton = document.querySelector('.deletebutton');
+const container = document.querySelector('.container');
 
 createButton.addEventListener('click', function() {
     document.querySelector('.deletebutton').disabled = false
@@ -48,7 +50,11 @@ createButton.addEventListener('click', function() {
 });
 
 deleteButton.addEventListener('click', function() {
-
+    if (container.firstChild) {
+        container.removeChild(container.firstChild);
+    } else {
+        document.querySelector('.deletebutton').disabled = true;
+    }
 });
 
 
@@ -154,11 +160,11 @@ const renderCalendar = () => {
 ////////////////////////////////////////////////////////////////////////////
 
 const calendars = [];
-const count = 0;
+let count = 0;
 
 
 class Calendar {
-    constructor(date, n) {
+    constructor(date, num) {
         this.num = num;
         this.createCalendar();
         this.date = date;
@@ -172,5 +178,5 @@ class Calendar {
 
 }
 
-const calendar1 = new Calendar(date, count);
+const calendar1 = new Calendar(date, count++);
 calendars.push(calendar1);
