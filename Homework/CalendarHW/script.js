@@ -1,19 +1,12 @@
-let m = 10 //prompt('Введите номер месяца');
-let year = 2021 //prompt('Введите год');
-
-
-
-
+let date;
+const montharr = ['Выбрать месяц', 'Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
 const yeararr = ['Выбрать год'];
 for (let i = 1980; i <= new Date().getFullYear(); i++) {
     yeararr.push(i);
 }
 
-const montharr = ['Выбрать месяц', 'Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
-
-const gotSelectYear = document.getElementById("select-year");
-const gotSelectMonth = document.getElementById("select-month");
-
+const gotSelectYear = document.querySelector("#select-year");
+const gotSelectMonth = document.querySelector("#select-month");
 
 function selectCreate(elem, arr) {
     let select = elem;
@@ -30,42 +23,64 @@ function selectCreate(elem, arr) {
 selectCreate(gotSelectYear, yeararr);
 selectCreate(gotSelectMonth, montharr);
 
-// function getSelectedValue(elem) {
-//     let select = elem
-//     let value = select.value;
-//     return value
-// }
-
-// m = getSelectedValue(gotSelectMonth);
-
-
-
-const changeSelect = () => {
-    if(gotSelectMonth.value !== 'Выбрать месяц' && gotSelectYear.value !== 'Выбрать год') {
-      document.querySelector('.createbutton').disabled = false    
+const dataSet = () => {
+    if (gotSelectMonth.value !== 'Выбрать месяц' && gotSelectYear.value !== 'Выбрать год') {
+        document.querySelector('.createbutton').disabled = false;
+        year = gotSelectYear.value;
+        month = montharr.indexOf(gotSelectMonth.value) - 1;
+        date = new Date(year, month);
     } else {
-      document.querySelector('.createbutton').disabled = true
+        document.querySelector('.createbutton').disabled = true;
     }
-  }
+}
 
-gotSelectMonth.addEventListener("change", changeSelect);
-gotSelectYear.addEventListener("change", changeSelect);
-
-
+gotSelectMonth.addEventListener("change", dataSet);
+gotSelectYear.addEventListener("change", dataSet);
 
 
-
-
-
-const createButton = document.querySelector('.createbutton')
+const createButton = document.querySelector('.createbutton');
+const deleteButton = document.querySelector('.deletebutton');
 
 createButton.addEventListener('click', function() {
     document.querySelector('.deletebutton').disabled = false
+    createTemplate();
     renderCalendar();
 });
 
+deleteButton.addEventListener('click', function() {
 
-let date = new Date(year, m);
+});
+
+
+
+
+const createTemplate = () => {
+    const container = document.querySelector('.container') // '.container${this.num}'
+    let sample = `<div class="calendar">
+                <div class="month">
+                    <i class="fas fa-angle-double-left prev-year"></i>
+                    <i class="fas fa-angle-left prev"></i>
+                    <div class="date">
+                        <h1></h1>
+                        <p></p>
+                    </div>
+                    <i class="fas fa-angle-right next"></i>
+                    <i class="fas fa-angle-double-right next-year"></i>
+                </div>
+                <div class="weekdays">
+                    <div>Пн</div>
+                    <div>Вт</div>
+                    <div>Ср</div>
+                    <div>Чт</div>
+                    <div>Пт</div>
+                    <div>Сб</div>
+                    <div>Вс</div>
+                </div>
+                <div class="days"></div>
+                </div>`;
+    container.insertAdjacentHTML("beforeend", sample);
+}
+
 
 const renderCalendar = () => {
     date.setDate(1);
@@ -85,14 +100,12 @@ const renderCalendar = () => {
     ).getDay();
 
     const nextDays = 7 - lastDayIndex - 1;
+    const months = montharr.slice(1);
 
-    const months = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
 
     document.querySelector('.date h1').innerHTML = months[date.getMonth()];
 
     document.querySelector('.date p').innerHTML = date.getFullYear() + ' год';
-
-    //Конструктор основы
 
     let days = '';
 
@@ -120,37 +133,35 @@ const renderCalendar = () => {
         date.setMonth(date.getMonth() - 1);
         renderCalendar();
     });
-    
+
     document.querySelector('.next').addEventListener('click', () => {
         date.setMonth(date.getMonth() + 1);
         renderCalendar();
     });
-    
+
     document.querySelector('.prev-year').addEventListener('click', () => {
         date.setFullYear(date.getFullYear() - 1);
         renderCalendar();
     });
-    
+
     document.querySelector('.next-year').addEventListener('click', () => {
         date.setFullYear(date.getFullYear() + 1);
         renderCalendar();
     });
-    
+
 };
 
-
-
-
+////////////////////////////////////////////////////////////////////////////
 
 const calendars = [];
 const count = 0;
 
 
 class Calendar {
-    constructor(year, month, n) {
-        this.num = num; 
+    constructor(date, n) {
+        this.num = num;
         this.createCalendar();
-        this.setDate(month, year);
+        this.date = date;
     }
 
 
@@ -161,5 +172,5 @@ class Calendar {
 
 }
 
-const calendar1 = new Calendar();
+const calendar1 = new Calendar(date, count);
 calendars.push(calendar1);
