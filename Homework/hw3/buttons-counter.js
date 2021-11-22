@@ -4,7 +4,3 @@ document.addEventListener('click', function(event) {
         event.target.value++;
     }
 });
-
-console.log('Hello');
-
-
