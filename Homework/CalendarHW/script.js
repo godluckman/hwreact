@@ -14,10 +14,10 @@ const gotSelectMonth = document.querySelector("#select-month");
 function selectCreate(elem, arr) {
     for (let i = 0; i < arr.length; i++) {
         let opt = arr[i];
-        let nElem = document.createElement("option");
-        nElem.textContent = opt;
-        nElem.value = opt;
-        elem.appendChild(nElem);
+        let newElem = document.createElement("option");
+        newElem.textContent = opt;
+        newElem.value = opt;
+        elem.appendChild(newElem);
     }
 }
 
