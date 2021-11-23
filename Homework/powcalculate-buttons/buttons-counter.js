@@ -1,6 +1,13 @@
-document.addEventListener('click', function(event) {
+const buttons = document.querySelectorAll('button');
 
-    if (event.target.dataset.counter !== undefined) {
-        event.target.value++;
-    }
+[...buttons].forEach(button => {
+    button.onclick = count(button)
 });
+
+function count(button) {
+    let counter = 0;
+    return () => {
+        ++counter;
+        button.innerHTML = counter;
+    }
+}
