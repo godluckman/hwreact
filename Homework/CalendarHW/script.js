@@ -204,22 +204,22 @@ class Calendar {
         container.insertAdjacentHTML("beforeend", sample);
 
         document.querySelector(`.prev${this.num}`).addEventListener('click', () => {
-            date.setMonth(date.getMonth() - 1);
+            this.date.setMonth(this.date.getMonth() - 1);
             this.renderCalendar();
         });
 
         document.querySelector(`.next${this.num}`).addEventListener('click', () => {
-            date.setMonth(date.getMonth() + 1);
+            this.date.setMonth(this.date.getMonth() + 1);
             this.renderCalendar();
         });
 
         document.querySelector(`.prev-year${this.num}`).addEventListener('click', () => {
-            date.setFullYear(date.getFullYear() - 1);
+            this.date.setFullYear(this.date.getFullYear() - 1);
             this.renderCalendar();
         });
 
         document.querySelector(`.next-year${this.num}`).addEventListener('click', () => {
-            date.setFullYear(date.getFullYear() + 1);
+            this.date.setFullYear(this.date.getFullYear() + 1);
             this.renderCalendar();
         });
         this.renderCalendar();
@@ -248,11 +248,7 @@ class Calendar {
         const nextDays = 7 - lastDayIndex - 1;
         const months = montharr.slice(1);
 
-        console.log(document.querySelector(`.h${this.num}`))
-
         document.querySelector(`.h${this.num}`).innerHTML = months[this.date.getMonth()];
-
-        console.log(document.querySelector(`.p${this.num}`))
         document.querySelector(`.p${this.num}`).innerHTML = `${this.date.getFullYear()} год`;
 
         let days = '';
