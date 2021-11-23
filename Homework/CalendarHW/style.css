@@ -122,7 +122,6 @@
         text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
         margin: 0 30%;
     }
-    /* buttons */
     
     .styled {
         border: 0;
@@ -133,12 +132,10 @@
         text-align: center;
         color: #fff;
         text-shadow: 1px 1px 1px #000;
-        /*border-radius: 10px;*/
         background-color: #222227;
         cursor: pointer;
         box-sizing: border-box;
     }
-    /*.styled:hover {}*/
     
     .styled:active {
         box-shadow: inset -2px -2px 3px rgba(255, 255, 255, .6), inset 2px 2px 3px rgba(0, 0, 0, .6);
@@ -149,7 +146,6 @@
         color: #777;
         box-shadow: inset -2px -2px 3px rgba(150, 150, 150, 0.6), inset 2px 2px 3px rgba(0, 0, 0, .6);
     }
-    /* select */
     
     .select {
         border: 0;
@@ -160,7 +156,6 @@
         text-align: center;
         color: #fff;
         text-shadow: 1px 1px 1px #000;
-        /*border-radius: 10px;*/
         background-color: #222227;
         cursor: pointer;
         box-sizing: border-box;
