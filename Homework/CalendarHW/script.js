@@ -181,14 +181,14 @@ class Calendar {
         const container = document.querySelector('.container') // '.container${this.num}'
         let sample = `<div class="calendar calendar${this.num}">
                     <div class="month">
-                        <i class="fas fa-angle-double-left prev-year${this.num}"></i>
-                        <i class="fas fa-angle-left prev${this.num}"></i>
-                        <div class="date${this.num}">
-                            <h1${this.num}></h1>
-                            <p${this.num}></p>
+                        <i class="fas fa-angle-double-left prev-year prev-year${this.num}"></i>
+                        <i class="fas fa-angle-left prev prev${this.num}"></i>
+                        <div class="date date${this.num}">
+                            <h1 class="h${this.num}"></h1>
+                            <p class="p${this.num}"></p>
                         </div>
-                        <i class="fas fa-angle-right next${this.num}"></i>
-                        <i class="fas fa-angle-double-right next-year${this.num}"></i>
+                        <i class="fas fa-angle-right next next${this.num}"></i>
+                        <i class="fas fa-angle-double-right next-year next-year${this.num}"></i>
                     </div>
                     <div class="weekdays">
                         <div>Пн</div>
@@ -199,7 +199,7 @@ class Calendar {
                         <div>Сб</div>
                         <div>Вс</div>
                     </div>
-                    <div class="days${this.num}"></div>
+                    <div class="days days${this.num}"></div>
                     </div>`;
         container.insertAdjacentHTML("beforeend", sample);
 
@@ -248,12 +248,12 @@ class Calendar {
         const nextDays = 7 - lastDayIndex - 1;
         const months = montharr.slice(1);
 
-        console.log(document.querySelector(`.date${this.num} h1${this.num}`))
+        console.log(document.querySelector(`.h${this.num}`))
 
-        document.querySelector(`.date${this.num} h1${this.num}`).innerHTML = months[this.date.getMonth()];
-        console.log(this.date);
-        console.log(document.querySelector(`.date${this.num} p${this.num}`))
-        document.querySelector(`.date${this.num} p${this.num}`).innerHTML = `${this.date.getFullYear()} год`;
+        document.querySelector(`.h${this.num}`).innerHTML = months[this.date.getMonth()];
+
+        console.log(document.querySelector(`.p${this.num}`))
+        document.querySelector(`.p${this.num}`).innerHTML = `${this.date.getFullYear()} год`;
 
         let days = '';
 
