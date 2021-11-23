@@ -74,8 +74,6 @@ addButton.onclick = function() {
     console.log('Коктейль добавлен', coctailsStorage.getValue(n));
 }
 
-
-
 const deleteButton = document.getElementById('delete');
 deleteButton.onclick = function() {
     const k = prompt('Какой рецепт удалить?');

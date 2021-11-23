@@ -45,7 +45,6 @@ const container = document.querySelector('.container');
 createButton.addEventListener('click', function() {
     document.querySelector('.deletebutton').disabled = false
     calendars.push(new Calendar(date, count++));
-    console.log(calendars);
 });
 
 deleteButton.addEventListener('click', function() {
@@ -144,19 +143,35 @@ class Calendar {
         }
 
         for (let i = 1; i <= lastDay; i++) {
-            // if (
-            //     i === new Date().getDate() &&
-            //     date.getMonth() === new Date().getMonth()
-            // ) {
-            //     days += `<div class='today${this.num}'>${i}</div>`;
-            // } else {
-            days += `<div>${i}</div>`;
-            // }
+            days += `<div class='current current${this.num}'>${i}</div>`;
         }
 
         for (let j = 1; j <= nextDays + 1; j++) {
             days += `<div class='next-date next-date${this.num}'>${j}</div>`;
             monthDays.innerHTML = days;
+        }
+        this.highlight()
+    }
+
+    highlight() {
+        let currenDays = document.querySelector(`.days${this.num}`);
+        let check = [];
+        currenDays.onclick = function(event) {
+            let target = event.target;
+            check.push(target);
+            checkandhighlight(target, check);
+        };
+
+        function checkandhighlight(elem, check) {
+            let currentDays = [...document.querySelectorAll(`.current`)]
+            if (!currentDays.includes(elem)) { check.pop(); return }
+            if (check.length > 1) {
+                let prevTarget = check[0]
+                prevTarget.classList.remove('today');
+                check.shift();
+            }
+            elem.classList.add('today');
+            console.log(check);
         }
     }
 }
