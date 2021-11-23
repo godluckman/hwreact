@@ -147,6 +147,7 @@
     .styled:disabled {
         background-color: #777;
         color: #777;
+        box-shadow: inset -2px -2px 3px rgba(150, 150, 150, 0.6), inset 2px 2px 3px rgba(0, 0, 0, .6);
     }
     /* select */
     

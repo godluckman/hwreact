@@ -68,7 +68,7 @@ class Calendar {
     }
 
     createCalendar() {
-        const container = document.querySelector('.container') // '.container${this.num}'
+        const container = document.querySelector('.container')
         let sample = `<div class="calendar calendar${this.num}">
                     <div class="month">
                         <i class="fas fa-angle-double-left prev-year prev-year${this.num}"></i>
