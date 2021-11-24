@@ -127,8 +127,7 @@ class Calendar {
         const lastDayIndex = new Date(
             this.date.getFullYear(),
             this.date.getMonth() + 1,
-            0
-        ).getDay();
+            0).getDay();
 
         const nextDays = 7 - lastDayIndex - 1;
         const months = montharr.slice(1);
@@ -154,9 +153,9 @@ class Calendar {
     }
 
     highlight() {
-        let currenDays = document.querySelector(`.days${this.num}`);
+        let allDays = document.querySelector(`.days${this.num}`);
         let check = [];
-        currenDays.onclick = function(event) {
+        allDays.onclick = function(event) {
             let target = event.target;
             check.push(target);
             checkandhighlight(target, check);
@@ -164,7 +163,10 @@ class Calendar {
 
         function checkandhighlight(elem, check) {
             let currentDays = [...document.querySelectorAll(`.current`)]
-            if (!currentDays.includes(elem)) { check.pop(); return }
+            if (!currentDays.includes(elem)) {
+                check.pop();
+                return
+            }
             if (check.length > 1) {
                 let prevTarget = check[0]
                 prevTarget.classList.remove('today');
