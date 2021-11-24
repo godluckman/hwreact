@@ -48,10 +48,9 @@ createButton.addEventListener('click', function() {
 });
 
 deleteButton.addEventListener('click', function() {
-    if (container.firstChild) {
-        calendars.shift();
-        container.removeChild(container.firstChild);
-    } else {
+    calendars.shift();
+    container.removeChild(container.firstChild);
+    if (!container.firstChild) {
         document.querySelector('.deletebutton').disabled = true;
     }
 });
