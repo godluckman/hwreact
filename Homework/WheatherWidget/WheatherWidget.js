@@ -1,17 +1,23 @@
 class WheatherWidget {
-    constructor() {}
+    constructor() {
+        this.url = `https://api.openweathermap.org/data/2.5/weather?q=Minsk&lang=ru&appid=0f5f61647ce2ea9ac2c7ae72d9fc0e5a`;
+        this.urlCurrent = `https://api.openweathermap.org/data/2.5/weather?q=Minsk&lang=ru&appid=0f5f61647ce2ea9ac2c7ae72d9fc0e5a`;
+        this.urlForecast = `https://api.openweathermap.org/data/2.5/forecast?q=Minsk&lang=ru&appid=0f5f61647ce2ea9ac2c7ae72d9fc0e5a`;
+
+    }
 
     getWeather() {
-        let url1 = `https://api.openweathermap.org/data/2.5/weather?q=Minsk&lang=ru&appid=0f5f61647ce2ea9ac2c7ae72d9fc0e5a`
-        let url = `https://api.openweathermap.org/data/2.5/forecast?q=Minsk&lang=ru&appid=0f5f61647ce2ea9ac2c7ae72d9fc0e5a`
-        fetch(url)
+        document.querySelector('body').innerHTML += `<img class='loader' style="position: fixed; right: 1em; background: #b0e9ffbd;" src="https://loading.io/assets/img/c/icon/sunny-light.svg"></img>`
+        fetch(this.url)
             .then(function(response) { return response.json() })
             .then((data) => {
-                this.forecast(data);
+                document.querySelector('.loader').remove();
+                if (this.url === this.urlCurrent) {
+                    this.render(data);
+                } else {
+                    this.forecast(data);
+                }
             })
-            .catch(function() {
-                //catch errors
-            });
     }
 
     formatData(data) {
@@ -26,17 +32,16 @@ class WheatherWidget {
         this.body = document.querySelector('body')
         this.body.innerHTML = `<article class="box weather" style="position: fixed; z-index: 99; right: 1em; background: #b0e9ffbd; padding: 1em; border-radius: 3px; box-shadow: 0px 1px 7px rgba(0,0,0, 0.25);">
                                                     <span class="close" style="color: white; font: icon; font-size: 25px; cursor: pointer;">&times;</span>
-                                                    <button class="forecast" style="left:0; margin-left: 20px;">Прогноз на 3 дня</button>
+                                                    <button class="forecast" style="left:0; margin-left: 20px; background: #b0e9ffbd;">Прогноз на 3 дня</button>
                                                     <div class="icon bubble black">
                                                       <div>
                                                         <img src="http://openweathermap.org/img/wn/${this.icon}@2x.png">
                                                       </div>
                                                     </div>
-                                                    <div>Сейчас в Минске ${this.temp}</div>
+                                                    <div>Сейчас в Минске ${this.temp}.</div>
                                                     </br>
-                                                    <div>${this.description}. Ветер: ${this.wind}</div>
+                                                    <div>${this.description}. Ветер: ${this.wind}.</div>
                                                     </br>
-                                                    
                                                     </article>`;
 
         this.buttonsHandler();
@@ -45,35 +50,40 @@ class WheatherWidget {
     buttonsHandler() {
         const box = document.querySelector('.box');
         const span = document.querySelector('.close');
-        span.onclick = function() {
+        span.onclick = () => {
             box.style.display = "none";
         }
         const buttonForecast = document.querySelector('.forecast');
-        buttonForecast.onclick = function() {
+        buttonForecast.onclick = () => {
             box.style.display = "none";
-            forecast();
+            this.url = this.urlForecast;
+            this.getWeather();
         }
     }
 
     forecast(data) {
         const days = [data.list[0], data.list[8], data.list[16]]
-        console.log(days);
+        const nextdays = ['Сегодня', 'Завтра', 'Послезавтра'];
+        let i = 0;
         const container = document.createElement("DIV");
         container.style.position = 'fixed';
         container.style.right = '1em';
+        container.style.background = '#b0e9ffbd';
+        container.innerHTML += `<button class="back" style="background:#b0e9ffbd"><--</button>`
         document.querySelector('body').appendChild(container);
+
         for (let day of days) {
             this.formatData(day);
-            container.innerHTML += `<div style="background: #b0e9ffbd;">${this.temp} <img style="height:50px; vertical-align:middle" src="http://openweathermap.org/img/wn/${this.icon}@2x.png"> ${this.description}. Ветер: ${this.wind} </div>`;
+            container.innerHTML += `<div style="">${nextdays[i++]} в Минске ${this.temp} <img style="height:50px; vertical-align:middle" src="http://openweathermap.org/img/wn/${this.icon}@2x.png"> ${this.description}. Ветер: ${this.wind} </div>`;
         }
 
+        const buttonBack = document.querySelector('.back');
+        buttonBack.onclick = () => {
+            document.querySelector('.box').style.display = 'block'
+            container.remove();
+            this.buttonsHandler();
+        }
     }
-
-
-
-
-
-
 
 }
 
