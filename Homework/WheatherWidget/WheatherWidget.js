@@ -7,7 +7,7 @@ export class WheatherWidget {
     }
 
     getWeather() {
-        document.querySelector('body').innerHTML += `<img class='loader' style="position: fixed; right: 1em; background: #b0e9ffbd; height: 200px; border-radius: 3px;" src="./loader.gif"></img>`
+        document.querySelector('body').innerHTML += `<img class='loader' style="position: fixed; right: 1em; background: #b0e9ffbd; height: 250px; border-radius: 3px;" src="./loader.gif"></img>`
         fetch(this.url)
             .then(function(response) { return response.json() })
             .then((data) => {
@@ -29,16 +29,17 @@ export class WheatherWidget {
 
     render(data) {
         this.formatData(data);
+        console.log(data);
         this.body = document.querySelector('body')
         this.body.innerHTML = `<article class="box weather" style="position: fixed; z-index: 99; right: 1em; background: #b0e9ffbd; padding: 1em; border-radius: 3px; box-shadow: 0px 1px 7px rgba(0,0,0, 0.25);">
                                                     <span class="close" style="color: white; font: icon; font-size: 25px; cursor: pointer;">&times;</span>
-                                                    <button class="forecast" style="left:0; margin-left: 20px; background: #b0e9ffbd;">Прогноз на 3 дня</button>
+                                                    <button class="forecast" style="left:0; margin-left: 4em; background: #b0e9ffbd;">Прогноз на 3 дня</button>
                                                     <div class="icon bubble black">
                                                       <div>
                                                         <img src="http://openweathermap.org/img/wn/${this.icon}@2x.png">
                                                       </div>
                                                     </div>
-                                                    <div>Сейчас в Минске ${this.temp}.</div>
+                                                    <div>Сейчас в городе ${data.name} ${this.temp}.</div>
                                                     </br>
                                                     <div>${this.description}. Ветер: ${this.wind}.</div>
                                                     </br>
@@ -71,6 +72,7 @@ export class WheatherWidget {
         container.style.right = '1em';
         container.style.background = '#b0e9ffbd';
         container.style.borderRadius = '3px';
+        container.style.padding = '1em';
         container.innerHTML += `<button class="back" style="background:#b0e9ffbd; border-radius: 3px;" ><--</button>`
         document.querySelector('body').appendChild(container);
 
