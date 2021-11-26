@@ -7,7 +7,7 @@ export class WheatherWidget {
     }
 
     getWeather() {
-        document.querySelector('body').innerHTML += `<img class='loader' style="position: fixed; right: 1em; background: #b0e9ffbd; height: 10rem;" src="./loader.gif"></img>`
+        document.querySelector('body').innerHTML += `<img class='loader' style="position: fixed; right: 1em; background: #b0e9ffbd; height: 200px; border-radius: 3px;" src="./loader.gif"></img>`
         fetch(this.url)
             .then(function(response) { return response.json() })
             .then((data) => {
@@ -62,6 +62,7 @@ export class WheatherWidget {
     }
 
     forecast(data) {
+        console.log(data);
         const days = [data.list[0], data.list[8], data.list[16]]
         const nextdays = ['Сегодня', 'Завтра', 'Послезавтра'];
         let i = 0;
@@ -69,12 +70,13 @@ export class WheatherWidget {
         container.style.position = 'fixed';
         container.style.right = '1em';
         container.style.background = '#b0e9ffbd';
-        container.innerHTML += `<button class="back" style="background:#b0e9ffbd"><--</button>`
+        container.style.borderRadius = '3px';
+        container.innerHTML += `<button class="back" style="background:#b0e9ffbd; border-radius: 3px;" ><--</button>`
         document.querySelector('body').appendChild(container);
 
         for (let day of days) {
             this.formatData(day);
-            container.innerHTML += `<div style="">${nextdays[i++]} в Минске ${this.temp} <img style="height:50px; vertical-align:middle" src="http://openweathermap.org/img/wn/${this.icon}@2x.png"> ${this.description}. Ветер: ${this.wind} </div>`;
+            container.innerHTML += `<div style="">${nextdays[i++]} в городе ${data.city.name} ${this.temp} <img style="height:50px; vertical-align:middle" src="http://openweathermap.org/img/wn/${this.icon}@2x.png"> ${this.description}. Ветер: ${this.wind} <hr></div>`;
         }
 
         const buttonBack = document.querySelector('.back');
