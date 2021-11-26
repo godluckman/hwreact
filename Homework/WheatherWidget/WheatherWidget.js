@@ -1,4 +1,4 @@
-class WheatherWidget {
+export class WheatherWidget {
     constructor() {
         this.url = `https://api.openweathermap.org/data/2.5/weather?q=Minsk&lang=ru&appid=0f5f61647ce2ea9ac2c7ae72d9fc0e5a`;
         this.urlCurrent = `https://api.openweathermap.org/data/2.5/weather?q=Minsk&lang=ru&appid=0f5f61647ce2ea9ac2c7ae72d9fc0e5a`;
@@ -7,7 +7,7 @@ class WheatherWidget {
     }
 
     getWeather() {
-        document.querySelector('body').innerHTML += `<img class='loader' style="position: fixed; right: 1em; background: #b0e9ffbd;" src="https://loading.io/assets/img/c/icon/sunny-light.svg"></img>`
+        document.querySelector('body').innerHTML += `<img class='loader' style="position: fixed; right: 1em; background: #b0e9ffbd; height: 10rem;" src="./loader.gif"></img>`
         fetch(this.url)
             .then(function(response) { return response.json() })
             .then((data) => {
@@ -86,5 +86,3 @@ class WheatherWidget {
     }
 
 }
-
-new WheatherWidget().getWeather();
