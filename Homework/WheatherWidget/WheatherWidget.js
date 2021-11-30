@@ -29,7 +29,7 @@ export class WheatherWidget {
 
     render(data) {
         this.formatData(data);
-        console.log(data);
+
         this.body = document.querySelector('body')
         this.body.innerHTML = `<article class="box weather" style="position: fixed; z-index: 99; right: 1em; background: #b0e9ffbd; padding: 1em; border-radius: 3px; box-shadow: 0px 1px 7px rgba(0,0,0, 0.25);">
                                                     <span class="close" style="color: white; font: icon; font-size: 25px; cursor: pointer;">&times;</span>
@@ -64,7 +64,10 @@ export class WheatherWidget {
 
     forecast(data) {
         console.log(data);
-        const days = [data.list[0], data.list[8], data.list[16]]
+        const offset = +(new Date).toLocaleTimeString(navigator.language, { hour: '2-digit' }) - 12;
+        console.log(offset);
+        const days = [data.list[0 + offset], data.list[8 + offset], data.list[16 + offset]]
+        console.log(days);
         const nextdays = ['Сегодня', 'Завтра', 'Послезавтра'];
         let i = 0;
         const container = document.createElement("DIV");
