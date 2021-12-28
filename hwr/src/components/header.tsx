@@ -7,9 +7,9 @@ type HeaderProps = {
 
 const Header = ( {logo, name}: HeaderProps ) => {
     return (
-        <header>
-            <img src={logo} alt='Logo'></img>
-            <span>{name}</span>
+        <header >
+            <img src={logo} alt='Logo' height="50px"></img>
+            <span className="flow-text project">{name}</span>
         </header>
     );
 }
