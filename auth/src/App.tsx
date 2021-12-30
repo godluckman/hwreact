@@ -9,6 +9,7 @@ import MainPage from "./components/mainPage";
 import AuthProvider from "./components/authProvider";
 import RequireAuth from "./components/requireAuth";
 import InfoPage from "./components/infoPage";
+import DeletePage from "./components/deletePage";
 
 
 interface AuthContextType {
@@ -38,6 +39,13 @@ function App() {
                             <MainPage />
                         </RequireAuth>
                     }
+                />
+                <Route path="/delete"
+                       element={
+                           <RequireAuth>
+                               <DeletePage />
+                           </RequireAuth>
+                       }
                 />
                 <Route path="*" element={<Page404/>} />
             </Routes>

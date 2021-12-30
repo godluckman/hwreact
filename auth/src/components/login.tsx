@@ -6,17 +6,20 @@ const Login = () => {
     let navigate = useNavigate();
     let location: any = useLocation();
     let auth = React.useContext(AuthContext);
-
-    let from = location.state?.from?.pathname || '/';
+    let from = location.state?.from?.pathname || '/main';
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        let formData = new FormData(event.currentTarget);
-        let username = formData.get('username') as string;
-        if (localStorage.getItem(username)) {
-            auth.signin(username, () => {
+        const formData = new FormData(event.currentTarget);
+        const username = formData.get('username') as string;
+        const password = formData.get('password') as string;
+        const userData = JSON.parse(localStorage.getItem(username) || '{}');
+        if (localStorage.getItem(username) && password === userData.pass) {
+                auth.signin(username, () => {
                 navigate(from, { replace: true });
             });
+        } else {
+            alert("Неверное имя пользователя или пароль");
         }
     }
 
@@ -27,17 +30,13 @@ const Login = () => {
                     <input type="text" name='username' placeholder="Login"/>
                 </div>
                 <div className="u-form-group">
-                    <input type="password" placeholder="Password"/>
+                    <input type="password" name='password' placeholder="Password"/>
                 </div>
                 <div className="u-form-group">
                     <button type="submit">Log in</button>
                 </div>
             </form>
-            <div className="social-login">
-                <a href="#">
-                    log in with Google
-                </a>
-            </div>
+
         </div>
     );
 };

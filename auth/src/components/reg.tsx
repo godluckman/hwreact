@@ -10,17 +10,20 @@ const Reg = () => {
     let location: any = useLocation();
     let auth = React.useContext(AuthContext);
 
-    let from = location.state?.from?.pathname || '/';
+    let from = location.state?.from?.pathname || '/main';
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const data = {email, pass, login};
-        localStorage.setItem(login, JSON.stringify(data))
         if (!localStorage.getItem(login)) {
+            localStorage.setItem(login, JSON.stringify(data))
             auth.signin(login, () => {
                 navigate(from, { replace: true });
             });
+        } else {
+            alert("Такой пользователь уже существует");
         }
+
         setEmail('');
         setPass('');
     }
